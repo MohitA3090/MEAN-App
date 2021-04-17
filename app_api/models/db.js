@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('./locations');
 
 // root:example@
-const dbURL = 'mongodb://localhost:27017/Loc8r';
+const dbURL = 'mongodb://root:example@localhost:27017/Loc8r';
 mongoose.connect(dbURL, {useNewUrlParser: true});
 
 mongoose.connection.on('connected', () => {
