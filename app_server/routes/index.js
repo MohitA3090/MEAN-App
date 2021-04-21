@@ -6,8 +6,12 @@ const router = express.Router();
 
 /* Location Pages */
 router.get('/', locationsCtrl.homeList);
-router.get('/location', locationsCtrl.locationInfo);
-router.get('/location/review/new', locationsCtrl.addReview);
+router.get('/location/:locationId', locationsCtrl.locationInfo);
+
+/* Review Pages */
+router
+    .get('/location/:locationId/review/new', locationsCtrl.addReview)
+    .post('/location/:locationId/review/new', locationsCtrl.doAddReview);
 
 /* Other Pages */
 router.get('/about', othersCtrl.about);

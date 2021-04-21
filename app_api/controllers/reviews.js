@@ -22,7 +22,7 @@ const doSetAverageRating = (location) => {
 const updateAverageRating = (locationId) => {
     Location
         .findById(locationId)
-        .select('rating reviews')
+        .select('name rating reviews')
         .exec((err, location) => {
             if(!err) {
                 doSetAverageRating(location);
@@ -48,7 +48,7 @@ const doAddReview = (req, res, location) => {
                     .json(err);
             }
             else {
-                updateAverageRating(location1._id);
+                updateAverageRating(location1.id);
                 const thisReview = location1.reviews.slice(-1).pop();
                 return res
                     .status(201)
@@ -70,7 +70,7 @@ const reviewsCreate = (req, res) => {
                         .status(400)
                         .json(err);
                 } else {
-                    return doAddReview(req, res, location);
+                    doAddReview(req, res, location);
                 }
             });
     } else {
